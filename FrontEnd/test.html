@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Main DeshBord</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body{
+
+            background-image:url('image/vecteezy_ai-generated-elementary-students-studying-together-smiling_39588002.jpg');
+
+            background-size:cover;
+
+            background-position:center;
+
+            height:100vh;
+
+        }
+
+        .overlay{
+
+            width:100%;
+            height:100vh;
+
+            background:rgba(0,0,0,0.5);
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+        }
+
+        .card{
+
+            width:400px;
+
+            background:rgba(255,255,255,0.2);
+
+            padding:30px;
+
+            border-radius:20px;
+
+            backdrop-filter:blur(10px);
+
+            text-align:center;
+
+            color:white;
+
+        }
+
+        .title{
+
+            font-size:40px;
+
+            margin-bottom:20px;
+
+        }
+
+        .preview{
+
+            width:100%;
+
+            border-radius:15px;
+
+            margin-bottom:20px;
+
+        }
+
+        .price{
+
+            font-size:30px;
+
+            margin-bottom:20px;
+
+        }
+
+        .qr{
+
+            width:120px;
+
+            border-radius:10px;
+
+            margin-bottom:20px;
+
+        }
+
+        .upi{
+
+            font-size:20px;
+
+            margin-bottom:20px;
+
+        }
+
+        .btn{
+
+            background:#00bcd4;
+
+            color:white;
+
+            padding:12px 25px;
+
+            border:none;
+
+            border-radius:10px;
+
+            cursor:pointer;
+
+            text-decoration:none;
+
+            display:inline-block;
+
+        }
+
+        .btn:hover{
+
+            background:#0097a7;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="overlay">
+
+        <div class="card">
+
+            <h1 class="title">NatureVista</h1>
+
+            <img
+                src="image/pexels-lauripoldre-29863712.jpg"
+                class="preview"
+            >
+
+            <h2 class="price">Price ₹1</h2>
+
+
+            <p class="upi">
+
+                UPI ID: harshitbisen70@okicici
+
+            </p>
+
+            <a
+                class="btn"
+            >  Pay Now </a>
+
+            <br><br>
+<!-- herf="/download" -->
+            <a  class="btn" onclick="buyImage()">Download Image</a>
+
+        </div>
+
+    </div>
+    <!-- ===========SCRITP========= -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+
+async function buyImage(){
+
+    try{
+
+        const response =
+        await fetch("/create-order");
+
+        const order =
+        await response.json();
+
+        const options = {
+
+            key:"rzp_test_Sq2DWi4U2BXW2t",
+
+            amount:order.amount,
+
+            currency:order.currency,
+
+            order_id:order.id,
+
+            name:"NatureVista",
+
+            description:"Image Purchase",
+
+    method:{
+
+        upi:true,
+        card:true,
+        netbanking:true,
+        wallet:true
+
+    },
+            handler:function(response){
+
+                fetch("/verify-payment",{
+
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":"application/json"
+                    },
+
+                    body:JSON.stringify(response)
+
+                })
+
+                .then(res=>res.json())
+
+                .then(data=>{
+
+                    if(data.success){
+
+                        window.location="/download";
+
+                    }
+                    else{
+
+                        alert(
+                            "Payment verification failed"
+                        );
+
+                    }
+
+                });
+
+            }
+
+        };
+
+        const rzp =
+        new Razorpay(options);
+
+        rzp.open();
+
+    }
+
+    catch(err){
+
+        console.log(err);
+
+        alert(err);
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>
