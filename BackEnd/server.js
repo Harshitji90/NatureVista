@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-// dotenv.config({ path: "./BackEnd/.env" });
+dotenv.config({ path: "./BackEnd/.env" });
 
 // dotenv.config({
 //     path:"./.env"
