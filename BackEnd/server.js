@@ -77,7 +77,7 @@ app.post("/signup", async (req, res) => {
     await user.save();
 
     // res.send("Signup Successful");
-    res.redirect("/Web.html");
+    res.redirect("/test.html");
   } catch (err) {
     console.log(err);
     res.send(err.massage);
@@ -106,7 +106,7 @@ app.post("/login", async (req, res) => {
     // console.log(process.env.JWT_SECRET);
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-    res.redirect("/Web.html");
+    res.redirect("/test.html");
   } catch (err) {
     console.log(err);
     res.send(err.message);
