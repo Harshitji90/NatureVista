@@ -1,10 +1,10 @@
 import dotenv from "dotenv";
-dotenv.config({ path: "./BackEnd/.env" });
+// dotenv.config({ path: "./BackEnd/.env" });
 
 // dotenv.config({
 //     path:"./.env"
 // });
-// dotenv.config();
+dotenv.config();
 import express from "express";
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
