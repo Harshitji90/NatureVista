@@ -14,7 +14,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import dns from "dns";
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
-import connectDB from "./config/mongoDB.js";
+import connectDB from "./config/mongoDb.js";
 
 //=====For Payment==========
 import qrcode from "qrcode";
