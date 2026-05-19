@@ -1,5 +1,9 @@
 {
   "devDependencies": {
     "nodemon": "^3.1.14"
+  },
+  "dependencies": {
+    "add": "^2.0.6",
+    "git": "^0.1.5"
   }
 }
