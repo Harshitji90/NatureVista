@@ -4,7 +4,7 @@ dotenv.config({ path: "./BackEnd/.env" });
 // dotenv.config({
 //     path:"./.env"
 // });
-dotenv.config();
+// dotenv.config();
 import express from "express";
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
@@ -37,14 +37,16 @@ app.use(express.json());
 import module from "module";
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("FrontEnd"));
+// app.use(express.static("FrontEnd"));
+app.use(express.static(path.join(__dirname, "../FrontEnd")));
 
 console.log(path.join(__dirname, "FrontEnd"));
 
 // Signup Route
 // Signup Page Open
 app.get("/signup", (req, res) => {
-  res.sendFile(__dirname + "/FrontEnd/signup.html");
+  // res.sendFile(__dirname + "/FrontEnd/signup.html");
+  res.sendFile(path.join(__dirname,"../FrontEnd/signup.html"));
 });
 import User from "./model/User.js";
 import Razorpay from "razorpay";
@@ -214,6 +216,10 @@ app.get("/download", (req, res) => {
 app.post("/DeshB", (req, res) => {});
 
 //server
-app.listen(3000, () => {
-  console.log("Server Running on Port 3000"); 
+// app.listen(3000, () => {
+//   console.log("Server Running on Port 3000"); 
+// });
+
+app.listen(port, () => {
+  console.log(`Server Running on Port ${port}`);
 });
